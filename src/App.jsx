@@ -8,7 +8,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  console.log("render");
+
   //run once
   useEffect(() => {
     getLocalTodos();
@@ -43,7 +43,6 @@ function App() {
       localStorage.setItem("todos", JSON.stringify([]));
     } else {
       let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      console.log(todoLocal);
       setTodos(todoLocal);
     }
   };
