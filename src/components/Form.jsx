@@ -23,23 +23,37 @@ export const Form = ({
     setStatus(e.target.value);
   };
   return (
-    <form>
-      <input
-        value={inputText}
-        onChange={inputTextHandler}
-        type="text"
-        className="todo-input"
-      />
-      <button onClick={submitTodoHandler} className="todo-button" type="submit">
-        <i className="fas fa-plus-square"></i>
-      </button>
-      <div className="select">
-        <select onChange={statusHandler} name="todos" className="filter-todo">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="uncompleted">Uncompleted</option>
-        </select>
-      </div>
-    </form>
+    <div className="wrapper">
+      <form>
+        <div className="input-container input-container--left">
+          <input
+            value={inputText}
+            onChange={inputTextHandler}
+            type="text"
+            className="todo-input"
+          />
+          <button
+            onClick={submitTodoHandler}
+            className="todo-button"
+            type="submit"
+          >
+            <i className="fas fa-plus-square input-icon"></i>
+          </button>
+        </div>
+        <div className="input-container input-container--right">
+          <div className="select">
+            <select
+              onChange={statusHandler}
+              name="todos"
+              className="filter-todo"
+            >
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="uncompleted">Uncompleted</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };

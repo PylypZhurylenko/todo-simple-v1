@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { Form } from "./components/Form";
 import { TodoList } from "./components/TodoList";
 import { React, useEffect, useState } from "react";
@@ -8,32 +8,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-
-  //run once
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
-  //use effect
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status]);
-
-  //functions
-  const filterHandler = () => {
-    switch (status) {
-      case "completed":
-        setFilteredTodos(todos.filter((todo) => todo.completed === true));
-        break;
-      case "uncompleted":
-        setFilteredTodos(todos.filter((todo) => todo.completed === false));
-        break;
-      default:
-        setFilteredTodos(todos);
-        break;
-    }
-  };
-
   //save to local
   const saveLocalTodos = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -46,6 +20,31 @@ function App() {
       setTodos(todoLocal);
     }
   };
+
+  //run once
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+  //use effect
+  useEffect(() => {
+    //functions
+    const filterHandler = () => {
+      switch (status) {
+        case "completed":
+          setFilteredTodos(todos.filter((todo) => todo.completed === true));
+          break;
+        case "uncompleted":
+          setFilteredTodos(todos.filter((todo) => todo.completed === false));
+          break;
+        default:
+          setFilteredTodos(todos);
+          break;
+      }
+    };
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
   return (
     <div className="App">
       <header>
